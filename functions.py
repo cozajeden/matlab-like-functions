@@ -115,11 +115,11 @@ def magic(N=3, dt=int) -> array:
 
             for x, i in enumerate(sequence):
                 for y, j in enumerate(sequence):
-                    n = x*N + y
+                    n = x*N + y + 1
                     if i == j:
-                        ms[x, y] = n + 1
+                        ms[x, y] = n
                     else:
-                        ms[x, y] = N2 - n + 1
+                        ms[x, y] = N2 - n
                     
         else:
             ms = zeros((N,N), dtype=dt)
@@ -144,7 +144,6 @@ def magic(N=3, dt=int) -> array:
     else:
         raise ValueError(f'N have to be > 2, not({N})')
     return ms
-print(magic(10))
 
 if __name__ == "__main__":
     from matplotlib import pyplot as plt
@@ -170,7 +169,7 @@ if __name__ == "__main__":
     plt.subplot(324)
     plt.imshow(y)
     plt.title('OUT')
-    y = arange(2).reshape((1, 2))
+    y = arange(6).reshape((2, 3))
     plt.subplot(325)
     plt.imshow(y)
     plt.title('IN')
