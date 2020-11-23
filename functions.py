@@ -128,27 +128,23 @@ def magic(N=3, dt=int) -> array:
             c = N//2
             d = c * c
             e = a - 1
-            f = N - 1
 
             chunk = __odd_magic(c, dt)
             ms[:c,:c] = chunk
             ms[c:,c:] = chunk + d
             ms[:c,c:] = chunk + d * 2
             ms[c:,:c] = chunk + d * 3
-
-            for j in range(a):
-                ms[a,j+1], ms[a+c, j+1] = ms[a+c, j+1], ms[a,j+1]
-                for i in range(a):
-                    ms[i,j],    ms[i+c,j]   = ms[i+c,j],    ms[i,j]
-                    ms[i+b,j],  ms[i+b+c,j] = ms[i+b+c,j],  ms[i+b,j]
-            for j in range(e):
-                for i in range(c):
-                    ms[i, f-j], ms[i+c,f-j] = ms[i+c,f-j], ms[i, f-j]
+            s = ms.copy()
+            
+            ms[c:a+c,:a], ms[:a,:a]        = s[:a,:a],         s[c:a+c,:a]
+            ms[b:a+b,:a], ms[b+c:a+b+c,:a] = s[b+c:a+b+c, :a], s[b:a+b,:a]
+            ms[a,1:b],    ms[a+c,1:b]      = s[a+c,1:b],       s[a,1:b]
+            ms[:c,N-e:N], ms[c:, N-e:N]    = s[c:, N-e:N],     s[:c,N-e:N]
 
     else:
         raise ValueError(f'N have to be > 2, not({N})')
     return ms
-
+print(magic(10))
 
 if __name__ == "__main__":
     from matplotlib import pyplot as plt
