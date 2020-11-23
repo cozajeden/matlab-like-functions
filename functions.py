@@ -125,7 +125,7 @@ def magic(N=3, dt=int) -> array:
             ms = zeros((N,N), dtype=dt)
             a = N//4
             b = a + 1
-            c = int(N * 0.5)
+            c = N//2
             d = c * c
             e = a - 1
             f = N - 1
