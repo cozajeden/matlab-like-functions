@@ -20,11 +20,11 @@ def blockproc(a: ndarray or str or list or tuple, fun=lambda x: x, x=1, y=1, gs=
             default: lambda x: x
         
         x (int, optional):
-            Chunk x dimension.
+            Chunk Axis-0 dimension.
             default: 1
         
         y (int, optional):
-            Chunk y dimension.
+            Chunk Axis-1 dimension.
             default: 1
 
         gs (bool, optional):
@@ -155,7 +155,7 @@ if __name__ == "__main__":
     plt.subplot(322)
     plt.imshow(y)
     plt.title('OUT')
-    y = magic(21)
+    y = magic(60)
     plt.subplot(323)
     plt.imshow(y)
     plt.title('IN')
