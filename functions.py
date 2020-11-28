@@ -109,17 +109,11 @@ def magic(N=3, dt=int) -> array:
             ms = __odd_magic(N, dt)
 
         elif N%4 == 0:
-            ms = zeros((N,N), dtype=dt)
-            sequence = [1 if i%4 in {0,3} else 0 for i in range(N)]
             N2 = N*N
-
-            for x, i in enumerate(sequence):
-                for y, j in enumerate(sequence):
-                    n = x*N + y + 1
-                    if i == j:
-                        ms[x, y] = n
-                    else:
-                        ms[x, y] = N2 - n
+            con = lambda x: x%4 in {0,3}
+            mask = array([[True if con(x)^con(y) else False for y in range(N)] for x in range(N)]).reshape((N, N))
+            ms = arange(1,N2 + 1, dtype=dt).reshape((N, N))
+            ms[mask] = N2 - ms[mask]
                     
         else:
             ms = zeros((N,N), dtype=dt)
