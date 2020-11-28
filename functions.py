@@ -89,7 +89,7 @@ def __odd_magic(N, dt=int):
     i, j = 0, N//2
     magic_square = zeros((N,N), dtype=dt)
 
-    for n in range(1, N*N+1):
+    while n <= N*N:
         magic_square[i, j] = n
         n += 1
         newi, newj = (i-1) % N, (j+1)% N
