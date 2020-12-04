@@ -1,6 +1,7 @@
 from types import FunctionType
 from numpy import *
 from numpy import asarray
+from scipy import fftpack
 from PIL.Image import open
 from PIL.ImageOps import grayscale
 
@@ -138,6 +139,9 @@ def magic(N=3, dt=int) -> array:
     else:
         raise ValueError(f'N have to be > 2, not({N})')
     return ms
+
+def dctmtx(n):
+    return fftpack.dct(eye(n), norm='ortho', axis=0)
 
 if __name__ == "__main__":
     from matplotlib import pyplot as plt
