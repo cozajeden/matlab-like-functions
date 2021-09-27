@@ -5,7 +5,7 @@ from scipy import fftpack
 from PIL.Image import open
 from PIL.ImageOps import grayscale
 
-def blockproc(a: ndarray or str or list or tuple, fun=lambda x: x, x=1, y=1, gs=False) -> array:
+def blockproc(a: ndarray or str or list or tuple, fun=lambda x: x, x=1, y=1, gs=False) -> ndarray:
     """
     #### Will return `array` processed in chunks with shape (`x`, `y`).
     
@@ -85,7 +85,7 @@ def blockproc(a: ndarray or str or list or tuple, fun=lambda x: x, x=1, y=1, gs=
                 b[ j*newx:(j + 1)*newx, i*newy:(i+ 1)*newy ] = fun(a[ j*x:(j + 1)*x, i*y:(i+1)*y ])
     return b
 
-def __odd_magic(N, dt=int):
+def __odd_magic(N: int, dt=int) -> ndarray:
     n = 1
     i, j = 0, N//2
     magic_square = zeros((N,N), dtype=dt)
@@ -101,7 +101,7 @@ def __odd_magic(N, dt=int):
     
     return magic_square
 
-def magic(N=3, dt=int) -> array:
+def magic(N: int=3, dt: type=int) -> ndarray:
     """Create an N x N magic square.""" 
     ms = None
 
@@ -140,7 +140,7 @@ def magic(N=3, dt=int) -> array:
         raise ValueError(f'N have to be > 2, not({N})')
     return ms
 
-def dctmtx(n):
+def dctmtx(n: int) -> ndarray:
     return fftpack.dct(eye(n), norm='ortho', axis=0)
 
 if __name__ == "__main__":
